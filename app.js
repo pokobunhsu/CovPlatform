@@ -4,9 +4,9 @@ const koaBody = require('koa-body')
 var cors = require('koa-cors');
 const csvParser = require("csv-parser");
 const needle = require("needle");
-
 const app = new Koa()
 const router = new Router()
+const PORT = process.env.PORT || 3000;
 
 app.use(koaBody());
 app.use(cors({
@@ -45,7 +45,10 @@ router
     })
 app.use(router.routes())
 
-app.listen(80)
+app.listen(PORT, err => {
+    if (err) throw err;
+    console.log("%c Server running", "color: green");
+});
 
 
 
