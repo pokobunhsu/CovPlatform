@@ -15,6 +15,7 @@ app.use(cors({
 }));
 
 var result = [];
+var updateTime = ""
 
 router
     .get('/', ctx => {
@@ -43,6 +44,9 @@ router
     .get('/update/selfTest', async ctx => {
         ctx.body = await getData()
     })
+    .get('/selfTest/lastUpdate', async ctx => {
+        ctx.body = updateTime
+    })
 app.use(router.routes())
 
 app.listen(PORT, err => {
@@ -67,6 +71,14 @@ let getData = () => {
                     console.log("An error has occurred");
                 } else {
                     console.log('資料更新成功');
+                    let today = new Date();
+                    let yaer = today.getFullYear()
+                    let month = today.getMonth() + 1
+                    let date = today.getDate()
+                    let hour = today.getHours()
+                    let minute = today.getMinutes()
+                    let second = today.getSeconds()
+                    updateTime = `${yaer}/${month.toString().padStart("2", "0")}/${date.toString().padStart("2", "0")} ${hour.toString().padStart("2", "0")}:${minute.toString().padStart("2", "0")}:${second.toString().padStart("2", "0")}`
                     resolve(result)
                 }
             })
