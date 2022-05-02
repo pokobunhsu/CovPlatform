@@ -1,0 +1,29 @@
+{
+  "name": "covplatform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pokobunhsu/CovPlatform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pokobunhsu/CovPlatform/issues"
+  },
+  "homepage": "https://github.com/pokobunhsu/CovPlatform#readme",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^10.1.1",
+    "needle": "^3.1.0",
+    "request": "^2.88.2"
+  }
+}
