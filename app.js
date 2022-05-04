@@ -14,7 +14,8 @@ app.use(cors({
     credentials: true
 }));
 
-var result = [];
+var result = []
+var newData = []
 var updateTime = ""
 
 router
@@ -57,20 +58,22 @@ app.listen(PORT, err => {
 
 
 let getData = () => {
-    result.length = 0
+    newData.length = 0
     const url = "https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv";
     return new Promise((resolve, reject) => {
         needle
             .get(url)
             .pipe(csvParser())
             .on("data", (data) => {
-                result.push(data);
+                newData.push(data);
             })
             .on("done", (err) => {
                 if (err) {
                     console.log("An error has occurred");
                 } else {
                     console.log('資料更新成功');
+                    result.length = 0
+                    result = result.concat(newData)
                     let today = new Date();
                     let yaer = today.getFullYear()
                     let month = today.getMonth() + 1
@@ -89,4 +92,4 @@ let getData = () => {
 getData()
 setInterval(function () {
     getData()
-}, 120000)
+}, 30000)
